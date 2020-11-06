@@ -152,13 +152,21 @@
     //Detecta si es iphone o android y redirecciona 
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-    if (/android/i.test(userAgent)) {
-      window.location.href = 'https://play.google.com/store/apps/developer?id=Mang%C3%BA+Games';
+    function comprobarDispositivo() {
+      if (/android/i.test(userAgent)) {
+        window.location.href = 'https://play.google.com/store/apps/developer?id=Mang%C3%BA+Games';
+      }
+
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = 'https://apps.apple.com/us/app/super-charadas-guessup/id1503858643?l=es';
+      }
     }
-    
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      window.location.href = 'https://apps.apple.com/us/app/super-charadas-guessup/id1503858643?l=es';
-    }
+
+    comprobarDispositivo()
+
+    document.getElementById("app").addEventListener("click", () => {
+      comprobarDispositivo()
+    })
   </script>
   
 </body>
